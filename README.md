@@ -64,3 +64,10 @@ INSTALLED_APPS = [
 # Crear un acceso al admin de Django
 
 - python manage.py createsuperuser
+
+# Instalar otras librerias
+
+drf-yasg => pip3 install drf-yasg, ESTO ES PARA LA DOCUMENTACIÓN SWAGGER
+
+django_filter => pip3 install django-filter
+
