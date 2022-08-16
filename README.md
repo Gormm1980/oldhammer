@@ -10,8 +10,8 @@
 # Instalar las frameworks / librerías
 Recordemos que para realizar instalación de cualquier librería en Python, podemos hacerlo mediante el comando pip install <LIBRERIA> en este caso vamos a instalar las siguientes librerías
 
-- pip install django djangorestframework djangorestframework-simplejwt 
-- pip install django-model-utils
+- pip3 install django djangorestframework djangorestframework-simplejwt 
+- pip3 install django-model-utils
 
 El siguiente paso es crear un nuevo proyecto de Django
 
@@ -19,13 +19,13 @@ El siguiente paso es crear un nuevo proyecto de Django
 
 Asegúrate que todo funcione hasta aquí. Puedes probar la ejecución del servidor Django con el siguiente comando:
 
-- python manage.py runserver
+- python3 manage.py runserver
 
 # Instalación y configuración de Django REST Framework
 
 Para instalar el Djago Rest Framework ejecutar el siguiente comando en la consola
 
-- pip install djangorestframework
+- pip3 install djangorestframework
 
 Después de instalar el framework debemos realizar la siguiente configuración, en el archivo settings.py vamos a agregar la aplicación rest_framework en la sección INSTALLED_APPS
 
@@ -38,7 +38,7 @@ Si tienes alguna duda del proceso de instalación puedes consultar la documentac
 # Crear aplicación
 Ahora vamos a crear una aplicación
 
-- python manage.py startapp "nombre de la aplicación"
+- python3 manage.py startapp "nombre de la aplicación"
 
 Registre la aplicación  en el proyecto, esto lo puedes hacer mediante el archivo settings.py del proyecto
 
@@ -55,15 +55,15 @@ INSTALLED_APPS = [
 
 # Crear una migración
 
-- python manage.py makemigrations
+- python3 manage.py makemigrations
 
 # Correr todas las migraciones
 
-- python manage.py migrate
+- python3 manage.py migrate
 
 # Crear un acceso al admin de Django
 
-- python manage.py createsuperuser
+- python3 manage.py createsuperuser
 
 # Instalar otras librerias
 
