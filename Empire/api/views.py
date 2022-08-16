@@ -1,16 +1,15 @@
 from django.shortcuts import render
-
 # Create your views here.
-from rest_framework.views import APIView
+
 from rest_framework.response import Response
 from Empire.api.serializers import Empire, EmpireCommanders, EmpireHeroes, EmpireBasicTroops, EmpireSpecialTroops, EmpireSingularTroops
-from rest_framework import status
+from rest_framework import status, viewsets
 
 
-class EmpireCommander(APIView):
+class EmpireCommander(viewsets.ViewSet):
     def GET(self, request):
         commanders = EmpireCommanders.objects.all()
-        serializer = EmpireCommandersSerializers(commanders, many=True)
+        serializer = EmpireCommandersSerializers(request.commanders)
         return Response(serializer.data)
     def POST(self, request):
         serializer = EmpireCommandersSerializers(data=request.data)
@@ -26,10 +25,10 @@ class EmpireCommander(APIView):
         commanders.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
 
-class EmpireHeroes(APIView):
+class EmpireHeroes(viewsets.ViewSet):
     def GET(self, request):
         heroes = EmpireHeroes.objects.all()
-        serializer = EmpireHeroesSerializers(heroes, many=True)
+        serializer = EmpireHeroesSerializers(request.heroes)
         return Response(serializer.data)
     def POST(self, request):
         serializer = EmpireHeroesSerializers(data=request.data)
@@ -45,10 +44,10 @@ class EmpireHeroes(APIView):
         heroes.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
     
-    class  EmpireBasicTroops(APIView):
+class  EmpireBasicTroops(viewsets.ViewSet):
         def GET(self, request):
             basic_troops = EmpireBasicTroops.objects.all()
-            serializer = EmpireBasicTroopsSerializers(basic_troops, many=True)
+            serializer = EmpireBasicTroopsSerializers(request.basic_troops)
             return Response(serializer.data)
         def POST(self, request):
             serializer = EmpireBasicTroopsSerializers(data=request.data)
@@ -64,10 +63,10 @@ class EmpireHeroes(APIView):
             basic_troops.delete()
             return Response(serializer.errors, status=status.HTTP_204_NO_CONTENT)
 
-class EmpireSpecialTroops(APIView):
+class EmpireSpecialTroops(viewsets.ViewSet):
         def GET(self, request):
             special_troops = EmpireSpecialTroops.objects.all()
-            serializer = EmpireSpecialTroopsSerializers(special_troops, many=True)
+            serializer = EmpireSpecialTroopsSerializers(request.special_troops)
             return Response(serializer.data)
         def POST(self, request):
             serializer = EmpireSpecialTroopsSerializers(data=request.data)
@@ -83,10 +82,10 @@ class EmpireSpecialTroops(APIView):
             special_troops.delete()
             return Response(serializer.errors, status=status.HTTP_204_NO_CONTENT)
 
-class EmpireSingularModel(APIView):
+class EmpireSingularTroops(viewsets.ViewSet):
     def GET(self, request):
         singular_model = EmpireSingularModel.objects.all()
-        serializer = EmpireSingularModelSerializers(singular_model, many=True)
+        serializer = EmpireSingularModelSerializers(singular_model)
         return Response(serializer.data)
     def POST(self, request):
         serializer = EmpireSingularModelSerializers(data=request.data)
@@ -102,9 +101,9 @@ class EmpireSingularModel(APIView):
         singular_model.delete()
         return Response(serializer.errors, status=status.HTTP_204_NO_CONTENT)
     
-    class Empire(APIView):
+class Empire(viewsets.ViewSet):
         def GET(self, request):
-            empire = EmpireCommanders.objects.all(), EmpireHeroes.objects.all(), EmpireBasicTroops.objects.all(), EmpireSpecialTroops.objects.all(), EmpireSingularModel.objects.all()
-            serializer = EmpireSerializers(empire, many=True)
+            empire = Empire.objects.all()
+            serializer = EmpireSerializers(request.empire)
             return Response(serializer.data)
     
